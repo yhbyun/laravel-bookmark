@@ -2,6 +2,8 @@
 
 Visual bookmark organizer application in Laravel
 
+![screenshot](https://rivario.com/bookmark/images/bookmark.png ""bookmark"")
+
 Working demo at [https://rivario.com/bookmark](https://rivario.com/bookmark)
 
 
