@@ -1,0 +1,33 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/bookmark">Bookmark</a>
+      <div class="nav-collapse">
+
+        <div class="logged-in">
+        <ul class="nav">
+          <li class="mytags-menu"><a href="/bookmark/mytags" id="btn-mytags"><i class="icon-tags"></i> Tags</a></li>
+          <li class="addbookmark-menu"><a href="/bookmark/" id="btn-addbookmark"><i class="icon-pencil"></i> Add Bookmark</a></li>
+          <li class="account-menu"><a href="/bookmark/account" id="btn-account"><i class="icon-cogs"></i> Settings</a></li>
+          <li class="signout-menu"><a href="/bookmark/logout" id="btn-logout"><i class="icon-signout"></i> Sign Out</a></li>
+        </ul>
+
+        <form id="frm-search" class="navbar-search pull-right">
+          <input type="text" name="search" class="search-query" placeholder="Search bookmarks">
+        </form>
+        </div>
+
+        <ul class="nav public pull-right">
+          <li><a href="/bookmark/login" id="btn-login">Sign In</a></li>
+          <li><a href="/bookmark/login" class="btn btn-small btn-primary" id="btn-signup">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="bookmark Module summary">
+  <div class="bookmark-wrapper">
+    <div class="bookmark-holder">
+      <a href="/bookmark/link/{{id}}" target="_blank" class="pinImageWrapper">
+        <h4 class="pinDomain">{{url}}</h4>
+        <div class="fadeContainer">
+          <div class="hoverMask"></div>
+          <img src="/bookmark/images/screenshots/{{id}}_thumb.png" class="pinImg fullBleed loaded fade" style="width:228px;height:160px;" onerror="javascript:this.src='/bookmark/images/thumb_queue.png'"/>
+        </div>
+      </a>
+    </div>
+    <div class="tags">
+      {{#each tags}}
+      <a class="tag btn btn-info btn-small"><i class="icon-tag"></i> {{this}}</a>
+      {{/each}}
+    </div>
+    <div class="bookmark-meta">
+      <div class="title">{{title}}</div>
+      <div class="description">{{description}}</div>
+      <div class="info">
+        <span class="infoItem">{{hit_cnt}} visits</span>
+        <span class="infoItem">{{#relativeTime date}}{{/relativeTime}}</span>
+      </div>
+    </div>
+    {{#newBadge date}}{{/newBadge}}
+  </div>
+</div>
+

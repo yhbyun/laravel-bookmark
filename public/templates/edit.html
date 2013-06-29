@@ -1,0 +1,54 @@
+<div class="modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Edit bookmark</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="alert alert-error" style="display:none">
+        <strong>Ooops!</strong>
+      </div>
+      <div class="alert alert-success" style="display:none">
+        <strong>Success!</strong> You passed the validation.
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="url">URL</label>
+        <div class="controls">
+          <input type="text" name="url" id="url" value="{{url}}" class="span5" data-error-style="inline" />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="title">Title</label>
+        <div class="controls">
+          <input type="text" name="title" id="title" value="{{title}}" class="span5" />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="description">Description</label>
+        <div class="controls">
+          <input type="text" name="description" id="description" value="{{description}}" class="span5" />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="description">Public</label>
+        <div class="controls">
+          <input id="public" name="public" type="checkbox" {{is_public}} />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="tags">Tags</label>
+        <div class="controls">
+          <input type="text" name="tags" id="tags" value="{{tags}}" placeholder="Tags" class="" autocomplete="off" />
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="reset" class="btn cancel">Close</button> <button type="submit" class="btn btn-primary save">Save Changes</button>
+  </div>
+</div>

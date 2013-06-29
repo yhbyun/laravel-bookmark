@@ -1,0 +1,30 @@
+# Laravel
+/bootstrap/compiled.php
+/vendor
+
+# Configuration
+/app/config/development
+/app/config/production
+
+# Composer
+composer.phar
+composer.lock
+
+# OS
+.DS_Store
+.idea/
+
+# Packages
+/app/_ide_helpers.php
+
+# Grunt
+Gruntfile.js
+package.json
+
+# Script
+/script
+/node
+/node_modules
+
+# Temporary
+/tmp

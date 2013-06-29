@@ -1,0 +1,40 @@
+{
+  "name": "yhbyun/laravel-bookmark",
+  "description": "Visual Bookmark Organizer",
+  "keywords": ["bookmark", "laravel"],
+  "license": "MIT",
+  "author": [
+    {
+      "name": "YongHun Byun",
+      "homepage": "http://rivarion.com"
+    }
+  ],
+  "require": {
+    "laravel/framework": "4.0.*"
+  },
+  "autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/database/seeds",
+			"app/tests/TestCase.php"
+		]
+	},
+	"scripts": {
+		"pre-update-cmd": [
+			"php artisan clear-compiled"
+		],
+		"post-install-cmd": [
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan optimize"
+		]
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "dev"
+}
