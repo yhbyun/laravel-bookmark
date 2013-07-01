@@ -8,12 +8,12 @@
 	<link href="css/flat-ui.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/grots.css" rel="stylesheet">
-	<link href="css/app.css?13062803" rel="stylesheet">
+	<link href="css/app.css?13062901" rel="stylesheet">
 
-	<link rel="shortcut icon" type="image/x-icon" href="images/bookmark.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/bookmark-flat.ico" />
 
-	<script type="text/javascript" src="assets/js/templates.js?13062804"></script>
-	<script type="text/javascript" src="assets/js/script.min.js?13062804"></script>
+	<script type="text/javascript" src="assets/js/templates.js?13062901"></script>
+	<script type="text/javascript" src="assets/js/script.min.js?13062901"></script>
 
 	<script type="text/javascript">
 		@if (Auth::check())
@@ -36,6 +36,11 @@
 <div id="app"></div>
 
 <div id="footer">
+	<a href="https://github.com/yhbyun/laravel-bookmark">
+	<span class="icon-stack icon-3x">
+  	<i class="icon-circle icon-3x icon-stack-base"></i>
+  	<i class="icon-github icon-3x icon-light"></i>
+	</span></a>
 	<a href="http://twitter.com/river">
 	<span class="icon-stack icon-3x">
   	<i class="icon-circle icon-3x icon-stack-base"></i>
