@@ -837,3 +837,8 @@ div.tagsinput span.tag a:before {
     margin-top:80px;
 }
 
+.navbar .brand {
+    background: url(../images/Bookmarks-flat-256.png) no-repeat left center;
+    background-size:30px 30px;
+    padding-left:35px;
+}
