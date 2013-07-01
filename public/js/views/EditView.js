@@ -24,18 +24,9 @@ var EditView = Backbone.View.extend({
 
     $('body').append(this.el);
     this.$('input[name=tags]').attr('id', 'tags' + this.model.id);
-    /*
     this.$('input[name=tags]').tagsInput({
       autocomplete: {
-        source: './api/v1/autocomplete'
-      },
-      defaultText: '',
-      width: '367px'
-    });
-    */
-    this.$('input[name=tags]').tagsInput({
-      autocomplete: {
-        source: './api/v1/autocomplete'
+        source: '/bookmark/api/v1/autocomplete'
       },
       width: '367px'
     });

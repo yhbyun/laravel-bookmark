@@ -3,17 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<title>Bookmark your favorite site</title>
+	<link href="{{ Request::root() }}/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{ Request::root() }}/css/flat-ui.css" rel="stylesheet">
+	<link href="{{ Request::root() }}/css/font-awesome.min.css" rel="stylesheet">
+	<link href="{{ Request::root() }}/css/grots.css" rel="stylesheet">
+	<link href="{{ Request::root() }}/css/app.css?13062901" rel="stylesheet">
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/flat-ui.css" rel="stylesheet">
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/grots.css" rel="stylesheet">
-	<link href="css/app.css?13062901" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ Request::root() }}/images/bookmark-flat.ico" />
 
-	<link rel="shortcut icon" type="image/x-icon" href="images/bookmark-flat.ico" />
-
-	<script type="text/javascript" src="assets/js/templates.js?13062901"></script>
-	<script type="text/javascript" src="assets/js/script.min.js?13062901"></script>
+	<script type="text/javascript" src="{{ Request::root() }}/assets/js/templates.js?13062901"></script>
+	<script type="text/javascript" src="{{ Request::root() }}/assets/js/script.min.js?13062901"></script>
 
 	<script type="text/javascript">
 		@if (Auth::check())
