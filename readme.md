@@ -6,13 +6,28 @@ Visual bookmark organizer application in Laravel
 
 Working demo at [https://rivario.com/bookmark](https://rivario.com/bookmark)
 
+## Features
 
-##Requirements
+- Webpage screenshot
+- Tagging
+- Public bookmark
+- Pinning
+
+## Used
+
+- [backbone.js](http://backbonejs.org)
+- [laravel](http://laravel.com)
+- [phantom.js](http://phantomjs.org)
+
+
+
+## Requirements
 
 	PHP >= 5.3.7
 	MCrypt PHP Extension
 
-##How to install
+
+## How to install
 ### Step 1: Get the code
 #### Option 1: Git Clone
 
@@ -84,6 +99,10 @@ Should work, if not try
     chmod -R 777 app/storage
 
 -----
+
+## Screenshot
+
+The screenshot daemon is in progress and unstable. I'll upload it ASAP.
 
 ## Release History
 
