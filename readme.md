@@ -116,4 +116,4 @@ This is free software distributed under the terms of the MIT license
 
 Inspired by and based on [bookmarkly.com](http://bookmarkly.com) & [readtrend.com](http://readtrend.com)
 
-Any questions, feel free to [contact me](http://twitter.com/river).
+Any questions, feel free to [contact me](http://about.me/yhbyun).
