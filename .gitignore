@@ -4,6 +4,7 @@
 
 # Configuration
 /app/config/development
+/app/config/local
 /app/config/production
 
 # Composer
