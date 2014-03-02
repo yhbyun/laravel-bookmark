@@ -28,3 +28,6 @@ package.json
 
 # Temporary
 /tmp
+
+# Vagrant
+.vagrant
