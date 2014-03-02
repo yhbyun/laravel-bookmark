@@ -24,11 +24,10 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-
-	'local' => array('your-machine-name'),
-
-));
+$env = $app->detectEnvironment(function() {
+    // Default to local if LARAVEL_ENV is not set
+    return getenv('LARAVEL_ENV') ?: 'local';
+});
 
 /*
 |--------------------------------------------------------------------------
