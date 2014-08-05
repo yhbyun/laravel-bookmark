@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration {
 			$table->timestamps();
 			$table->unique('username');
 			$table->unique('email');
+            $table->text("remember_token")->nullable();
 		});
 	}
 
