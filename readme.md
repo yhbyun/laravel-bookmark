@@ -20,83 +20,49 @@ Working demo at [https://rivario.com/bookmark](https://rivario.com/bookmark)
 - [phantom.js](http://phantomjs.org)
 
 
-
 ## Requirements
 
-	PHP >= 5.3.7
+	PHP >= 5.4
 	MCrypt PHP Extension
 
 
 ## How to install
 ### Step 1: Get the code
-#### Option 1: Git Clone
-
-	git clone git://github.com/yhbyun/laravel-bookmark.git
-	
-#### Option 2: Download the repository
-
-    https://github.com/yhbyun/laravel-bookmark/archive/master.zip
-
-### Step 2: Use Composer to install dependencies
-#### Option 1: Composer is not installed globally
-
-	curl -sS https://getcomposer.org/installer | php
-	php composer.phar install
-
-#### Option 2: Composer is installed globally
-
-	composer install
-
-If you haven't already, you might want to make [composer be installed globally](http://getcomposer.org/doc/00-intro.md#globally) for future ease of use.
-
-
-### Step 3: Configure Database Settings
-
-Now that you have the bookmark cloned and all the dependencies installed, you need to create a database and update the file `app/config/database.php`.
-
-### Step 4: Configure Mail Settings
-
-Now, you need to setup your mail settings by just opening and updating the following file `app/config/mail.php`.
-
-This will be used to send password reset emails to the users.
-
-### Step 5: Populate Database
-Run these commands to create tables:
-
-	php artisan migrate
-
-### Step 6: Set Encryption Key
-***In app/config/app.php***
 
 ```
-/*
-|--------------------------------------------------------------------------
-| Encryption Key
-|--------------------------------------------------------------------------
-|
-| This key is used by the Illuminate encrypter service and should be set
-| to a random, long string, otherwise these encrypted values will not
-| be safe. Make sure to change it before deploying any application!
-|
-*/
+$ git clone git://github.com/yhbyun/laravel-bookmark.git
+$ cd laravel-bookmark
 ```
 
-	'key' => 'YourSecretKey!!!',
 
-You can use artisan to do this
+### Step 2: Create Virtual Machine
+#### Install the applications
 
-    php artisan key:generate
+If you already installed, skip this process.
 
+- [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Install Vagrant](http://www.vagrantup.com/downloads.html)
 
-### Step 7: Make sure app/storage is writable by your web server.
+#### Create Virtual Machine
 
-If permissions are set correctly:
+```
+$ vagrant up
+```
 
-    chmod -R 775 app/storage
+### Step 3: Install Dependencies and Populate Database
 
-Should work, if not try
+```
+$ vagrant ssh
+$ cd /vagrant
+$ composer update
+$ php aritsan migrate
+```
 
-    chmod -R 777 app/storage
+### You're done!
+
+```
+http://192.168.22.10.xip.io/
+```
 
 -----
 
