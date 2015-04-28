@@ -1,9 +1,11 @@
 # Laravel
 /bootstrap/compiled.php
 /vendor
+/storage/database.sqlite
+.env
 
 # Configuration
-/app/config/production
+/config/production
 
 # Composer
 composer.phar
@@ -14,7 +16,6 @@ composer.lock
 .idea/
 
 # Packages
-/app/_ide_helpers.php
 
 # Grunt
 Gruntfile.js

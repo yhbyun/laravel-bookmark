@@ -17,6 +17,11 @@ var SigninView = Backbone.View.extend({
 
     $('body').append(this.el);
 
+    this.$('[data-toggle="checkbox"]').each(function () {
+      var $checkbox = $(this);
+      $checkbox.checkbox();
+    });
+
     $(this.el).modal({
       backdrop: true,
       keyboard: false,
