@@ -2,9 +2,11 @@
 
 use App\Bookmark;
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
 
-    public function link($id) {
+    public function link($id)
+    {
         $bookmark = Bookmark::findOrFail($id);
         $bookmark->hit_cnt = $bookmark->hit_cnt + 1;
         $bookmark->save();

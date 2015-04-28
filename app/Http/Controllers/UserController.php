@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
     /**
      * Store a newly created resource in storage.
@@ -40,10 +41,11 @@ class UserController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
 
         $user = User::find(Auth::user()->id);
         $user->name = $request->input('username');
@@ -54,7 +56,8 @@ class UserController extends Controller {
         return response()->json(['id' => $user->id, 'username' => $user->name, 'email' => $user->email]);
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $username = $request->input('username');
         $password = $request->input('password');
 
@@ -69,13 +72,15 @@ class UserController extends Controller {
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
     }
 
-    public function remind(Request $request) {
+    public function remind(Request $request)
+    {
         $credentials = ['email' => $request->input('email')];
-        Password::remind($credentials, function($message, $user) {
+        Password::remind($credentials, function ($message, $user) {
             $message->from('i@rivario.com', 'rivario.com');
             $message->subject('Your Password Reminder');
         });
@@ -91,10 +96,11 @@ class UserController extends Controller {
         return response()->json($result);
     }
 
-    public function reset(Request $request) {
+    public function reset(Request $request)
+    {
         $credentials = ['email' => $request->input('email')];
 
-        Password::reset($credentials, function($user, $password) {
+        Password::reset($credentials, function ($user, $password) {
             $user->password = Hash::make($password);
             $user->save();
         });

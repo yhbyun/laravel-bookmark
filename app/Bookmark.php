@@ -2,9 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bookmark extends Model {
+class Bookmark extends Model
+{
 
-    public function tags() {
+    public function tags()
+    {
         return $this->hasMany('App\Tag');
     }
 }

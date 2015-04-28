@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class BookmarkController extends Controller {
+class BookmarkController extends Controller
+{
 
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
 
         if ($request->input('tag')) {
             $params = [Auth::user()->id, $request->input('tag')];
@@ -29,12 +31,13 @@ class BookmarkController extends Controller {
         } else {
             $params = [Auth::user()->id];
             $offset = 0;
-            if ($request->input('offset')) $offset = $request->input('offset');
+            if ($request->input('offset'))
+                $offset = $request->input('offset');
             $sql = "SELECT id, url, title, description, pin, public, hit_cnt, created_at, GROUP_CONCAT(DISTINCT tag) AS tags FROM bookmarks LEFT OUTER JOIN tags ON bookmarks.id = tags.bookmark_id WHERE user_id = ? GROUP BY id ORDER BY pin DESC, created_at DESC LIMIT " . $offset . ",50";
         }
 
         $results = DB::select($sql, $params);
-        foreach($results as &$result) {
+        foreach ($results as &$result) {
             if ($result->tags && str_contains($result->tags, ',')) {
                 $result->tags = explode(',', $result->tags);
             } elseif ($result->tags) {
@@ -47,14 +50,15 @@ class BookmarkController extends Controller {
         return response()->json($results);
     }
 
-    public function index_public() {
+    public function index_public()
+    {
 
         $params = [];
         $offset = 0;
         $sql = "SELECT id, url, title, description, pin, public, hit_cnt, GROUP_CONCAT(DISTINCT tag) AS tags FROM bookmarks LEFT OUTER JOIN tags ON bookmarks.id = tags.bookmark_id WHERE public = 1 GROUP BY id ORDER BY created_at DESC LIMIT " . $offset . ",50";
 
         $results = DB::select($sql, $params);
-        foreach($results as &$result) {
+        foreach ($results as &$result) {
             if ($result->tags && str_contains($result->tags, ',')) {
                 $result->tags = explode(',', $result->tags);
             } elseif ($result->tags) {
@@ -72,17 +76,19 @@ class BookmarkController extends Controller {
      *
      * @return Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $bookmark = new Bookmark;
         $bookmark->user_id = Auth::user()->id;
         $bookmark->url = $request->input('url');
         $bookmark->title = $request->input('title');
         $bookmark->description = $request->input('description');
         $bookmark->public = $request->input('public');
-        if ($request->input('pin')) $bookmark->pin = $request->input('pin');
+        if ($request->input('pin'))
+            $bookmark->pin = $request->input('pin');
         $bookmark->save();
 
-        foreach($request->input('tags') as $keyword) {
+        foreach ($request->input('tags') as $keyword) {
             $tag = new Tag(['tag' => $keyword]);
             $bookmark->tags()->save($tag);
             //var_dump(DB::getQueryLog());
@@ -92,24 +98,14 @@ class BookmarkController extends Controller {
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
      * @param  int $id
      * @return Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $bookmark = Bookmark::findOrFail($id);
         $bookmark->url = $request->input('url');
         $bookmark->title = $request->input('title');
@@ -120,7 +116,7 @@ class BookmarkController extends Controller {
 
         Tag::where('bookmark_id', $id)->delete();
 
-        foreach($request->input('tags') as $keyword) {
+        foreach ($request->input('tags') as $keyword) {
             $tag = new Tag(['tag' => $keyword]);
             $bookmark->tags()->save($tag);
         }
@@ -131,12 +127,12 @@ class BookmarkController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         Bookmark::where('id', $id)->where('user_id', Auth::user()->id)->delete();
         Tag::where('bookmark_id', $id)->delete();
     }
-
 }
