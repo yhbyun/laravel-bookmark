@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Bookmark;
+use App\Commands\TakeSnapshotCommand;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,6 +95,8 @@ class BookmarkController extends Controller
             //var_dump(DB::getQueryLog());
         }
 
+        $this->dispatch(new TakeSnapshotCommand($bookmark));
+
         return response()->json($bookmark);
     }
 
@@ -120,6 +123,8 @@ class BookmarkController extends Controller
             $tag = new Tag(['tag' => $keyword]);
             $bookmark->tags()->save($tag);
         }
+
+        $this->dispatch(new TakeSnapshotCommand($bookmark));
 
         return response()->json($bookmark);
     }
