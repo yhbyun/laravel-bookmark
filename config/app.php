@@ -147,6 +147,7 @@ return [
 
         'Barryvdh\Queue\AsyncServiceProvider',
         'Intervention\Image\ImageServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
 	],
 
