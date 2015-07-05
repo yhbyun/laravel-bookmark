@@ -10,7 +10,8 @@
 	"require": {
 		"laravel/framework": "5.0.*",
 		"jonnyw/php-phantomjs": "3.*",
-		"barryvdh/laravel-async-queue": "0.4.*-dev"
+		"barryvdh/laravel-async-queue": "0.4.*-dev",
+		"intervention/image": "^2.3"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
