@@ -24,6 +24,7 @@ Working demo at [https://rivario.com/bookmark](https://rivario.com/bookmark)
 
 	PHP >= 5.4
 	MCrypt PHP Extension
+	GD Library (>=2.0) or Imagick PHP extension (>=6.5.7)
 
 
 ## How to install
@@ -55,6 +56,7 @@ $ vagrant up
 $ vagrant ssh
 $ cd /vagrant
 $ composer update
+$ php artisan queue:table
 $ php aritsan migrate
 ```
 
@@ -65,10 +67,6 @@ http://192.168.22.10.xip.io/
 ```
 
 -----
-
-## Screenshot
-
-The screenshot daemon is in progress and unstable. I'll upload it ASAP.
 
 ## Release History
 
