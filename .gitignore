@@ -25,6 +25,7 @@ package.json
 /script
 /node
 /node_modules
+/bin
 
 # Temporary
 /tmp
