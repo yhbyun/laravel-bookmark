@@ -56,8 +56,7 @@ $ vagrant up
 $ vagrant ssh
 $ cd /vagrant
 $ composer update
-$ php artisan queue:table
-$ php aritsan migrate
+$ php artisan migrate --force
 ```
 
 ### You're done!
