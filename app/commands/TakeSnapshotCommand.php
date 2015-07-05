@@ -64,7 +64,7 @@ class TakeSnapshotCommand extends Command implements SelfHandling, ShouldBeQueue
 
         if ($status === 200 || $status === 301 || $status === 302) {
             $img = Image::make($captureFile);
-            $img->resize(228, 160);
+            $img->widen(228)->crop(228, 160, 0, 0);
             $img->save($thumbFile);
 
             $bookmark->thumbnail = 1;
