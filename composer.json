@@ -8,7 +8,8 @@
       		"homepage": "http://rivarion.com"
     	}],
 	"require": {
-		"laravel/framework": "5.0.*"
+		"laravel/framework": "5.0.*",
+		"jonnyw/php-phantomjs": "3.*",
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -29,10 +30,12 @@
 	},
 	"scripts": {
 		"post-install-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS",
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],
 		"post-update-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS",
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],
@@ -42,6 +45,7 @@
 		]
 	},
 	"config": {
-		"preferred-install": "dist"
+		"preferred-install": "dist",
+        "bin-dir": "bin"
 	}
 }
