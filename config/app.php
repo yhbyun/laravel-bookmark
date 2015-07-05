@@ -145,6 +145,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+        'Barryvdh\Queue\AsyncServiceProvider',
+
 	],
 
 	/*
