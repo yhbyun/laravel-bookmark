@@ -37,6 +37,9 @@ class TakeSnapshotCommand extends Command implements SelfHandling, ShouldBeQueue
         $client = Client::getInstance();
         $client->setBinDir(base_path('bin'));
         $client->addOption('--ignore-ssl-errors=true');
+        $client->addOption('--ssl-protocol=any');
+        $client->addOption('--web-security=false');
+        //$client->debug(true);
 
         $request  = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
@@ -69,8 +72,10 @@ class TakeSnapshotCommand extends Command implements SelfHandling, ShouldBeQueue
 
             $bookmark->thumbnail = 1;
             $bookmark->save();
+
+            Log::info('TakeSnapshot completed. log:' . $client->getLog());
         } else {
-            Log::error('TakeSnapshot error. response status : ' . $status);
+            Log::error('TakeSnapshot error. response status : ' . $status . ', log:' . $client->getLog());
         }
     }
 }
