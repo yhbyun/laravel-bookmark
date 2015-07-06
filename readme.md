@@ -17,7 +17,7 @@ Working demo at [https://rivario.com/bookmark](https://rivario.com/bookmark)
 
 - [backbone.js](http://backbonejs.org)
 - [laravel](http://laravel.com)
-- [phantom.js](http://phantomjs.org)
+- [PhantomJS](http://phantomjs.org)
 
 
 ## Requirements
@@ -57,6 +57,14 @@ $ vagrant ssh
 $ cd /vagrant
 $ composer update
 $ php artisan migrate --force
+```
+
+> PhantomJS ssl bug<br>
+If there is no screenshot of `https` site and OS is Ubuntu 14.04, replace the installed PhantomJS(ver 1.7) with 2.0.0 version.
+
+```
+$ wget https://github.com/Pyppe/phantomjs2.0-ubuntu14.04x64/raw/master/bin/phantomjs
+$ cp phantomjs bin/
 ```
 
 ### You're done!
