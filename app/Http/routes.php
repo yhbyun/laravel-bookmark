@@ -11,35 +11,30 @@
 |
 */
 
-//Route::controllers([
-//	'auth' => 'Auth\AuthController',
-//	'password' => 'Auth\PasswordController',
-//]);
-
 // Route group for API versioning
-Route::group(array('prefix' => 'api/v1', 'before' => 'guest'), function() {
-    Route::post('user', array('uses' => 'UserController@store'));
-    Route::post('login', array('uses' => 'UserController@login'));
-    Route::post('password/remind', array('uses' => 'UserController@remind'));
-    Route::post('password/reset', array('before' => 'guest', 'uses' => 'UserController@reset'));
+Route::group(['prefix' => 'api/v1', 'middleware' => 'guest'], function() {
+    Route::post('user', ['uses' => 'UserController@store']);
+    Route::post('login', ['uses' => 'UserController@login']);
+    Route::post('password/remind', ['uses' => 'UserController@remind']);
+    Route::post('password/reset', ['uses' => 'UserController@reset']);
 
-    Route::get('bookmark/public', array('uses' => 'BookmarkController@index_public'));
+    Route::get('bookmark/public', ['uses' => 'BookmarkController@index_public']);
 });
 
-Route::group(array('prefix' => 'api/v1', 'before' => 'auth.basic'), function() {
-    Route::put('user', array('uses' => 'UserController@update'));
-    Route::get('logout', array('uses' => 'UserController@logout'));
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function() {
+    Route::put('user', ['uses' => 'UserController@update']);
+    Route::get('logout', ['uses' => 'UserController@logout']);
 
     Route::resource('bookmark', 'BookmarkController');
     Route::resource('tag', 'TagController');
-    Route::get('autocomplete', array('uses' => 'TagController@autocomplete'));
+    Route::get('autocomplete', ['uses' => 'TagController@autocomplete']);
 });
 
-Route::get('link/{id}', array('uses' => 'HomeController@link'));
+Route::get('link/{id}', ['uses' => 'HomeController@link']);
 
-Route::get('password/reset/{token}', array('before' => 'guest', function($token) {
+Route::get('password/reset/{token}', ['middleware' => 'guest', function($token) {
     return View::make('index')->with('token', $token);
-}));
+}]);
 
 Route::get('{any}', function() {
     return View::make('index')->with('token', '');
