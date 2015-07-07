@@ -2,20 +2,24 @@
 
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\PasswordBroker;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Exception\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    use ResetsPasswords;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
+    public function __construct(Guard $auth, PasswordBroker $passwords)
+    {
+        $this->auth = $auth;
+        $this->passwords = $passwords;
+    }
+
     public function store(Request $request)
     {
         $username = $request->input('username');
@@ -38,12 +42,6 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function update(Request $request)
     {
 
@@ -75,22 +73,31 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
+
+        $result['status'] = 'OK';
+
+        return response()->json($result);
     }
 
     public function remind(Request $request)
     {
-        $credentials = ['email' => $request->input('email')];
-        Password::remind($credentials, function ($message, $user) {
-            $message->from('i@rivario.com', 'rivario.com');
-            $message->subject('Your Password Reminder');
+        $this->validate($request, ['email' => 'required|email']);
+
+        $response = $this->passwords->sendResetLink($request->only('email'), function($m)
+        {
+            $m->subject($this->getEmailSubject());
         });
 
         $result = [];
-        if (Session::has('error')) {
-            $result['status'] = 'failed';
-            $result['error'] = trans(Session::get('reason'));
-        } elseif (Session::has('success')) {
-            $result['status'] = 'OK';
+        switch ($response)
+        {
+            case PasswordBroker::RESET_LINK_SENT:
+                $result['status'] = 'OK';
+                break;
+
+            case PasswordBroker::INVALID_USER:
+                $result['status'] = 'failed';
+                $result['error'] = trans($response);
         }
 
         return response()->json($result);
@@ -98,19 +105,39 @@ class UserController extends Controller
 
     public function reset(Request $request)
     {
-        $credentials = ['email' => $request->input('email')];
+        try {
+            $this->validate($request, [
+                'token'    => 'required',
+                'email'    => 'required|email',
+                'password' => 'required|confirmed',
+            ]);
+        } catch (HttpResponseException $e) {
+            $result['status'] = 'failed';
+            $result['error'] = "validation error";
 
-        Password::reset($credentials, function ($user, $password) {
-            $user->password = Hash::make($password);
+            return response()->json($result);
+        }
+
+        $credentials = $request->only(
+            'email', 'password', 'password_confirmation', 'token'
+        );
+
+        $response = $this->passwords->reset($credentials, function($user, $password)
+        {
+            $user->password = bcrypt($password);
             $user->save();
         });
 
         $result = [];
-        if (Session::has('error')) {
-            $result['status'] = 'failed';
-            $result['error'] = trans(Session::get('reason'));
-        } else {
-            $result['status'] = 'OK';
+        switch ($response)
+        {
+            case PasswordBroker::PASSWORD_RESET:
+                $result['status'] = 'OK';
+                break;
+
+            default:
+                $result['status'] = 'failed';
+                $result['error'] = trans($response);
         }
 
         return response()->json($result);
