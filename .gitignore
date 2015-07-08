@@ -5,7 +5,6 @@
 .env
 
 # Configuration
-/config/production
 
 # Composer
 composer.phar
