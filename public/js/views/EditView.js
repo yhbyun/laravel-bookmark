@@ -66,7 +66,7 @@ var EditView = Backbone.View.extend({
 
     this.$('.alert').hide();
 
-    if (this.model.set({ url: url, title: title, description: description, public: share, tags: tags, timestamp: Math.round(new Date().getTime() / 1000) }, {validate:true})) {
+    if (this.model.set({ url: url, title: title, description: description, public: share, tags: tags, created_at: new Date() }, {validate:true})) {
       this.model.save();
       this.unrender();
 
