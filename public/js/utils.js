@@ -48,7 +48,7 @@ jQuery(function ($) {
 
   Handlebars.registerHelper('isPinned', function(block) {
     if(this.pin === '1') {
-      return block(this);
+      return block.fn(this);
     } else {
       return block.inverse(this);
     }
@@ -56,7 +56,7 @@ jQuery(function ($) {
 
   Handlebars.registerHelper('isPublic', function(block) {
     if(this.public === '1') {
-      return block(this);
+      return block.fn(this);
     } else {
       return block.inverse(this);
     }
