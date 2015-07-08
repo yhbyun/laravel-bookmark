@@ -16,10 +16,6 @@ composer.lock
 # Packages
 /app/_ide_helpers.php
 
-# Grunt
-Gruntfile.js
-package.json
-
 # Script
 /script
 /node
