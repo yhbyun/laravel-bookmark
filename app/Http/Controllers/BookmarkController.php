@@ -56,7 +56,7 @@ class BookmarkController extends Controller
 
         $params = [];
         $offset = 0;
-        $sql = "SELECT id, url, title, description, pin, public, hit_cnt, GROUP_CONCAT(DISTINCT tag) AS tags FROM bookmarks LEFT OUTER JOIN tags ON bookmarks.id = tags.bookmark_id WHERE public = 1 GROUP BY id ORDER BY created_at DESC LIMIT " . $offset . ",50";
+        $sql = "SELECT id, url, title, description, pin, public, hit_cnt, created_at, GROUP_CONCAT(DISTINCT tag) AS tags FROM bookmarks LEFT OUTER JOIN tags ON bookmarks.id = tags.bookmark_id WHERE public = 1 GROUP BY id ORDER BY created_at DESC LIMIT " . $offset . ",50";
 
         $results = DB::select($sql, $params);
         foreach ($results as &$result) {
