@@ -2090,7 +2090,7 @@ var AccountView = Backbone.View.extend({
         }, 3000);
       },
       error: function() {
-        window.location = '/';
+        window.location = "/";
       }
     });
 
@@ -2159,7 +2159,7 @@ var AppView = Backbone.View.extend({
       url: './api/v1/logout',
       dataType: 'json',
       success: function(data) {
-        window.location = '/';
+        window.location = "/";
       }
     });
   },
@@ -2186,7 +2186,7 @@ var BookmarkPublicView = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this, 'render');
 
-    var d = new Date(this.model.get('timestamp') * 1000);
+    var d = new Date(this.model.get('created_at'));
     this.model.set({date: d});
     this.model.bind('change', this.render);
 
@@ -2216,7 +2216,7 @@ var BookmarkView = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this, 'render', 'edit', 'del', 'pinify');
 
-    var d = new Date(this.model.get('timestamp') * 1000);
+    var d = new Date(this.model.get('created_at'));
     this.model.set({date: d});
     this.model.set({thumburl: encodeURIComponent(this.model.get('url')) });
     this.model.bind('change', this.render);
@@ -2424,7 +2424,7 @@ var EditView = Backbone.View.extend({
 
     this.$('.alert').hide();
 
-    if (this.model.set({ url: url, title: title, description: description, public: share, tags: tags, timestamp: Math.round(new Date().getTime() / 1000) }, {validate:true})) {
+    if (this.model.set({ url: url, title: title, description: description, public: share, tags: tags, created_at: new Date() }, {validate:true})) {
       this.model.save();
       this.unrender();
 
@@ -2618,7 +2618,7 @@ var ResetpasswordView = Backbone.View.extend({
         }
       },
       error: function() {
-        window.location = '/';
+        window.location = "/";
       }
     });
 
@@ -2960,7 +2960,7 @@ var App = {
       options.error = function(xhr, ajaxOptions, thrownError) {
         if (xhr.status == 401) {
           alert('401 error');
-          window.location = '/';
+          window.location = "/";
         }
       }
       sync(method, model, options);

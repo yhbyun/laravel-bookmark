@@ -11,7 +11,7 @@ var BookmarkView = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this, 'render', 'edit', 'del', 'pinify');
 
-    var d = new Date(this.model.get('timestamp') * 1000);
+    var d = new Date(this.model.get('created_at'));
     this.model.set({date: d});
     this.model.set({thumburl: encodeURIComponent(this.model.get('url')) });
     this.model.bind('change', this.render);

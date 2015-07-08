@@ -3,7 +3,7 @@ var BookmarkPublicView = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this, 'render');
 
-    var d = new Date(this.model.get('timestamp') * 1000);
+    var d = new Date(this.model.get('created_at'));
     this.model.set({date: d});
     this.model.bind('change', this.render);
 
