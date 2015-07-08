@@ -7,6 +7,12 @@
       		"name": "YongHun Byun",
       		"homepage": "http://rivario.com"
     	}],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/yhbyun/laravel-async-queue.git"
+        }
+    ],
 	"require": {
 		"laravel/framework": "5.0.*",
 		"jonnyw/php-phantomjs": "3.*",
