@@ -12,6 +12,7 @@ Working demo at [https://rivario.com/bookmark](https://rivario.com/bookmark)
 - Tagging
 - Public bookmark
 - Pinning
+- [Bookmark This Page Chrome Extension](https://chrome.google.com/webstore/detail/bookmark-this-page/hpdkmodablpllphbfkiacbfhhcjgebdk)
 
 ## Used
 
